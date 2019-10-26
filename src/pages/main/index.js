@@ -85,8 +85,8 @@ export default function Main(props) {
             My node is online 24/7. You can use it as a WatchTower service, so
             you don't need to be online all the time and there is no risk of
             losing funds. If you are offline and someone try to steal your funds
-            (publishing and old state), if you are connected to a WatchTower the
-            scammer will be punished by losing all his funds of the channel,
+            (publishing and old state), and you are connected to a WatchTower,
+            the scammer will be punished by losing all his funds of the channel,
             that will be credited to you.
           </Typography>
           <Typography align="center">

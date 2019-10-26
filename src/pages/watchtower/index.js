@@ -20,7 +20,10 @@ export default function Watchtower(props) {
       <Container maxWidth="lg" className="main">
         <div className="section">
           <Typography align="center" variant="h4">
-            What are Watchtowers
+            What are Watchtowers{" "}
+            <span role="img" aria-label="Watchtower">
+              🗼
+            </span>
           </Typography>
           <Typography align="center">
             Watchtowers act as a second line of defense in responding to
@@ -57,6 +60,10 @@ export default function Watchtower(props) {
               lncli wtclient add {!uri.loading && uri.content}
             </code>
           </div>
+          <Typography align="center" style={{ marginTop: "2%" }}>
+            That's it! As long as my node is connected and observing the
+            network, you are safe.
+          </Typography>
         </div>
       </Container>
     </StyledWatchtower>

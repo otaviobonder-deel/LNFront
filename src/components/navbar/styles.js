@@ -20,6 +20,7 @@ export const StyledNavbar = styled.div`
     a {
       margin-left: 5%;
       margin-right: 5%;
+      text-decoration: none;
     }
   }
 `;
