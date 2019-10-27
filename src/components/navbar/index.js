@@ -19,6 +19,9 @@ export default function Navbar(props) {
             <Link to="/">
               <Typography color="secondary">Home</Typography>
             </Link>
+            <Link to="/channels">
+              <Typography color="secondary">Channels</Typography>
+            </Link>
             <Link to="/watchtower">
               <Typography color="secondary">WatchTower</Typography>
             </Link>

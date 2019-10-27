@@ -18,8 +18,7 @@ export const StyledNavbar = styled.div`
     flex-direction: row;
 
     a {
-      margin-left: 5%;
-      margin-right: 5%;
+      padding-left: 20px;
       text-decoration: none;
     }
   }

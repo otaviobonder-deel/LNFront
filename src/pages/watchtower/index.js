@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import { StyledWatchtower } from "./styles";
 import { Container, Typography } from "@material-ui/core";
+import Error from "../../components/error";
 
 export default function Watchtower(props) {
   // get node WatchTower URI
@@ -56,9 +57,15 @@ export default function Watchtower(props) {
             2. The watchtower URI of an active watchtower.
           </Typography>
           <div className="code">
-            <code style={{ wordBreak: "break-all" }}>
-              lncli wtclient add {!uri.loading && uri.content}
-            </code>
+            {uri.loading ? (
+              <Typography variant="body2">Loading my node's URI</Typography>
+            ) : uri.error ? (
+              <Error content="node's URI" />
+            ) : (
+              <code style={{ wordBreak: "break-all" }}>
+                lncli wtclient add {uri.content}
+              </code>
+            )}
           </div>
           <Typography align="center" style={{ marginTop: "2%" }}>
             That's it! As long as my node is connected and observing the

@@ -16,15 +16,7 @@ export const StyledWatchtower = styled.div`
     text-align: center;
   }
 
-  .main {
-    margin-top: 2%;
-  }
-
   .MuiTypography-root {
     margin-bottom: 2%;
-  }
-
-  .section {
-    margin-bottom: 5%;
   }
 `;

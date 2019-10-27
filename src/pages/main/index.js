@@ -4,6 +4,8 @@ import { StyledHome } from "./styles";
 import api from "../../services/api";
 import QRCode from "qrcode.react";
 import { Link } from "react-router-dom";
+import { GridLoader } from "react-spinners";
+import Error from "../../components/error";
 
 export default function Main(props) {
   // get node URI
@@ -65,7 +67,13 @@ export default function Main(props) {
             This page has the purpose to show some info about my LN node and the
             bitcoin network. Feel free to open a channel with me if you want to:
           </Typography>
-          {!uri.loading && !uri.error && (
+          {uri.loading ? (
+            <div className="spinner">
+              <GridLoader color="#3e2e56" />
+            </div>
+          ) : uri.error ? (
+            <Error content="URI from the node" />
+          ) : (
             <div
               style={{
                 display: "flex",
