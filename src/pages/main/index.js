@@ -39,7 +39,7 @@ export default function Main(props) {
                 variant={window.innerWidth <= 480 ? "h5" : "h2"}
                 align="center"
               >
-                Lightning Booster
+                Lightning Boost
               </Typography>
             </Grid>
             <Grid item>

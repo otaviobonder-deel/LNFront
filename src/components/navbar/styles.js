@@ -8,6 +8,7 @@ export const StyledNavbar = styled.div`
   height: 40px;
 
   .header {
+    align-items: center;
     display: flex;
     justify-content: space-between;
   }
