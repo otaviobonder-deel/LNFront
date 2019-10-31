@@ -70,10 +70,9 @@ export default function Chart(props) {
             stroke="#ff9500"
             fillOpacity={1}
             fill="url(#colorBtc)"
-            activeDot={{ r: 8 }}
           />
           <Area
-            name="Total invested in stock"
+            name={`Total invested in ${chartContent.content.symbol}`}
             type="monotone"
             dataKey="investment_total_stock"
             stroke="#00a1e4"
