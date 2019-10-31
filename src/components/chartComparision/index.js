@@ -19,6 +19,7 @@ import api from "../../services/api";
 import { components, useStyles } from "./selectComponents";
 import * as moment from "moment";
 import Chart from "./chart";
+import LoadingModal from "./loadingModal";
 
 export default function ChartComparision(props) {
   // select stock styles
@@ -150,7 +151,7 @@ export default function ChartComparision(props) {
               />
             </MuiPickersUtilsProvider>
           </Grid>
-          <Grid item xs={12} md={3} className="input-grid">
+          <Grid item xs={12} md={4} className="input-grid">
             <div className={classes.root}>
               <NoSsr>
                 <AsyncSelect
@@ -179,7 +180,7 @@ export default function ChartComparision(props) {
               </NoSsr>
             </div>
           </Grid>
-          <Grid item xs={12} md={3} className="input-grid">
+          <Grid item xs={12} md={2} className="input-grid">
             <TextField
               id="investment"
               name="investment"
@@ -215,6 +216,7 @@ export default function ChartComparision(props) {
       <div className="section">
         {chart.received && <Chart chartContent={chart} />}
       </div>
+      <LoadingModal open={chart.loading} />
     </StyledChartComparision>
   );
 }

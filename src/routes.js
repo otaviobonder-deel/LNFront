@@ -24,7 +24,7 @@ const Routes = () => {
           <Navbar setDrawer={setDrawer} />
           <Drawer drawer={drawer} setDrawer={setDrawer} />
           <Switch>
-            <Route exact path="/" component={Main} />
+            <Route exact path="/" component={Comparision} />
             <Route exact path="/watchtower" component={Watchtower} />
             <Route exact path="/channels" component={Channels} />
             <Route exact path="/comparision" component={Comparision} />
