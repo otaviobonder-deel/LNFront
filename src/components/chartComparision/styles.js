@@ -9,3 +9,7 @@ export const StyledChartComparision = styled.div`
     display: flex;
   }
 `;
+
+export const StyledPapers = styled.div`
+  display: flex;
+`;

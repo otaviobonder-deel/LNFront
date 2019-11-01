@@ -20,6 +20,7 @@ import { components, useStyles } from "./selectComponents";
 import * as moment from "moment";
 import Chart from "./chart";
 import LoadingModal from "./loadingModal";
+import _ from "lodash";
 
 export default function ChartComparision(props) {
   // select stock styles
@@ -52,18 +53,22 @@ export default function ChartComparision(props) {
   });
 
   // function to query stock
-  async function queryStocks(inputValue) {
-    return await api
+  function queryStocks(inputValue) {
+    return api
       .get("/finance/stocksearch", {
         params: { keywords: inputValue }
       })
       .then(response => {
-        return response.data;
+        if (response.data) return response.data;
+        else return { label: "Error loading stocks" };
       })
       .catch(() => {
         return { label: "Error loading stocks" };
       });
   }
+
+  // function to debounce queryStocks
+  let debouncedQueryStocks = _.debounce(queryStocks, 500);
 
   // function to handle selected stock option
   const handleSelectChange = selectedOption => {
@@ -156,7 +161,7 @@ export default function ChartComparision(props) {
               <NoSsr>
                 <AsyncSelect
                   cacheOptions
-                  loadOptions={queryStocks}
+                  loadOptions={debouncedQueryStocks}
                   value={query.stock}
                   onChange={handleSelectChange}
                   placeholder="Type the stock"
@@ -214,7 +219,8 @@ export default function ChartComparision(props) {
         </Grid>
       </div>
       <div className="section">
-        {chart.received && <Chart chartContent={chart} />}
+        {chart.received &&
+          (chart.content !== {} ? <Chart chartContent={chart} /> : "Error")}
       </div>
       <LoadingModal open={chart.loading} />
     </StyledChartComparision>

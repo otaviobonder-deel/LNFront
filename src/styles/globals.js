@@ -5,6 +5,10 @@ const GlobalStyle = createGlobalStyle`
   .main {
     margin-top: 2%;
   }
+  
+  .paper {
+    padding: 24px 16px;
+  }
 
   .section {
     margin-bottom: 5%;
