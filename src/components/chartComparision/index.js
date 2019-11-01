@@ -160,7 +160,6 @@ export default function ChartComparision(props) {
             <div className={classes.root}>
               <NoSsr>
                 <AsyncSelect
-                  cacheOptions
                   loadOptions={debouncedQueryStocks}
                   value={query.stock}
                   onChange={handleSelectChange}
