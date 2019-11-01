@@ -60,7 +60,6 @@ export default function ChartComparision(props) {
           params: { keywords: inputValue }
         })
         .then(response => {
-          console.log(response.data);
           if (!Object.keys(response.data).length) return [];
           return response.data;
         })
