@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { StyledChartComparision } from "./styles";
 import {
   Button,
@@ -20,7 +20,7 @@ import { components, useStyles } from "./selectComponents";
 import * as moment from "moment";
 import Chart from "./chart";
 import LoadingModal from "./loadingModal";
-import _ from "lodash";
+import debounce from "debounce-promise";
 
 export default function ChartComparision(props) {
   // select stock styles
@@ -53,22 +53,27 @@ export default function ChartComparision(props) {
   });
 
   // function to query stock
-  function queryStocks(inputValue) {
-    return api
-      .get("/finance/stocksearch", {
-        params: { keywords: inputValue }
-      })
-      .then(response => {
-        if (response.data) return response.data;
-        else return { label: "Error loading stocks" };
-      })
-      .catch(() => {
-        return { label: "Error loading stocks" };
-      });
+  function getAsyncOptions(inputValue) {
+    return new Promise((resolve, reject) => {
+      const results = api
+        .get("/finance/stocksearch", {
+          params: { keywords: inputValue }
+        })
+        .then(response => {
+          console.log(response.data);
+          if (!Object.keys(response.data).length) return [];
+          return response.data;
+        })
+        .catch(() => {
+          return { label: "Error loading stocks" };
+        });
+      resolve(results);
+    });
   }
-
-  // function to debounce queryStocks
-  let debouncedQueryStocks = _.debounce(queryStocks, 500);
+  const loadOptions = inputValue => getAsyncOptions(inputValue);
+  const debouncedLoadOptions = debounce(loadOptions, 500, {
+    leading: true
+  });
 
   // function to handle selected stock option
   const handleSelectChange = selectedOption => {
@@ -160,7 +165,7 @@ export default function ChartComparision(props) {
             <div className={classes.root}>
               <NoSsr>
                 <AsyncSelect
-                  loadOptions={debouncedQueryStocks}
+                  loadOptions={debouncedLoadOptions}
                   value={query.stock}
                   onChange={handleSelectChange}
                   placeholder="Type the stock"
