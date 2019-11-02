@@ -13,6 +13,7 @@ import { ExpandMore, FiberManualRecord } from "@material-ui/icons";
 import api from "../../services/api";
 import { GridLoader } from "react-spinners";
 import Error from "../../components/error";
+import QRCode from "qrcode.react";
 
 export default function Channels(props) {
   // handle expansion panel
@@ -41,9 +42,50 @@ export default function Channels(props) {
   const normalize = (local_balance, remote_balance) =>
     Math.round((local_balance / (local_balance + remote_balance)) * 100);
 
+  // get node URI
+  const [uri, setUri] = useState({ loading: true, error: false, content: {} });
+  useEffect(() => {
+    api
+      .get("/lightning/uri")
+      .then(response =>
+        setUri({ loading: false, error: false, content: response.data })
+      )
+      .catch(() => setUri({ loading: false, error: true, content: {} }));
+  }, []);
+
   return (
     <StyledChannels>
       <Container maxWidth="lg" className="main">
+        <div className="section">
+          <div className="section">
+            <Typography align="center" variant="h5">
+              This page has the purpose to show some info about my LN node and
+              the bitcoin network. Feel free to open a channel with me if you
+              want to:
+            </Typography>
+          </div>
+          {uri.loading ? (
+            <div className="spinner">
+              <GridLoader color="#3e2e56" />
+            </div>
+          ) : uri.error ? (
+            <Error content="URI from the node" />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+              }}
+              className="section"
+            >
+              <QRCode value={uri.content} />
+              <Typography style={{ wordBreak: "break-all" }}>
+                URI: {uri.content}
+              </Typography>
+            </div>
+          )}
+        </div>
         <div className="section">
           <Typography align="center" variant="h4">
             My channels

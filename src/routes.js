@@ -8,6 +8,7 @@ import Comparision from "./pages/comparision";
 import Drawer from "./components/drawer";
 import ReactGA from "react-ga";
 import { createBrowserHistory } from "history";
+import AdSense from "react-adsense";
 
 const history = createBrowserHistory();
 
@@ -41,9 +42,16 @@ const Routes = () => {
             <Route exact path="/" component={Comparision} />
             <Route exact path="/watchtower" component={Watchtower} />
             <Route exact path="/channels" component={Channels} />
-            <Route exact path="/comparision" component={Comparision} />
           </Switch>
         </div>
+        <AdSense.Google
+          client="ca-pub-2081075856996783"
+          slot=""
+          style={{ display: "block" }}
+          format="auto"
+          responsive="true"
+          layoutKey="-gw-1+2a-9x+5c"
+        />
       </Router>
     </Fragment>
   );

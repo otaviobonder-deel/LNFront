@@ -32,20 +32,15 @@ export default function Drawer(props) {
           variant="middle"
           style={{ backgroundColor: "white", marginTop: 10 }}
         />
-        <List>
+        <List className="links">
           <ListItemText onClick={toggleDrawer(false)}>
             <Link to="/">
-              <Typography color="secondary">Home</Typography>
+              <Typography color="secondary">How BTC compares</Typography>
             </Link>
           </ListItemText>
           <ListItemText onClick={toggleDrawer(false)}>
             <Link to="/channels">
               <Typography color="secondary">Channels</Typography>
-            </Link>
-          </ListItemText>
-          <ListItemText onClick={toggleDrawer(false)}>
-            <Link to="/comparision">
-              <Typography color="secondary">How BTC compares</Typography>
             </Link>
           </ListItemText>
           <ListItemText onClick={toggleDrawer(false)}>

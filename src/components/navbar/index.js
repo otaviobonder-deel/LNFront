@@ -23,13 +23,10 @@ export default function Navbar(props) {
             </div>
             <div className="links">
               <Link to="/">
-                <Typography color="secondary">Home</Typography>
+                <Typography color="secondary">How BTC compares</Typography>
               </Link>
               <Link to="/channels">
                 <Typography color="secondary">Channels</Typography>
-              </Link>
-              <Link to="/comparision">
-                <Typography color="secondary">How BTC compares</Typography>
               </Link>
               <Link to="/watchtower">
                 <Typography color="secondary">WatchTower</Typography>

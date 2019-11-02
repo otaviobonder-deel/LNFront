@@ -2,6 +2,13 @@ import styled from "styled-components";
 import { Drawer } from "@material-ui/core";
 
 export const StyledDrawer = styled(Drawer)`
+  .links {
+    a {
+      padding-left: 20px;
+      text-decoration: none;
+    }
+  }
+
   .MuiDrawer-paper {
     background-color: #3e2e56;
   }
