@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { StyledChartComparision } from "./styles";
 import {
   Button,
@@ -48,7 +48,7 @@ export default function ChartComparision(props) {
   const [query, setQuery] = useState({
     periodicity: "",
     stock: "",
-    date: new Date(),
+    date: moment().subtract(1, "y"),
     investment: ""
   });
 
@@ -157,6 +157,9 @@ export default function ChartComparision(props) {
                 animateYearScrolling
                 disableFuture
                 format="MM/dd/yyyy"
+                minDate={new Date("2014-04-15")}
+                openTo="year"
+                maxDate={moment().subtract(1, "days")}
               />
             </MuiPickersUtilsProvider>
           </Grid>
@@ -164,6 +167,7 @@ export default function ChartComparision(props) {
             <div className={classes.root}>
               <NoSsr>
                 <AsyncSelect
+                  cacheOptions
                   loadOptions={debouncedLoadOptions}
                   value={query.stock}
                   onChange={handleSelectChange}
