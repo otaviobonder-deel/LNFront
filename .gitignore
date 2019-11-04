@@ -102,3 +102,9 @@ deploy.tar
 
 # Yarn lock
 yarn.lock
+
+# Private Files
+*.macaroon
+
+# Package-lock
+package-lock.json
