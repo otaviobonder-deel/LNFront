@@ -10,11 +10,27 @@ import {
   Legend,
   Line
 } from "recharts";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  RedditShareButton,
+  RedditIcon,
+  EmailShareButton,
+  EmailIcon
+} from "react-share";
 
 import * as moment from "moment";
 import Papers from "./papers";
+import { Typography } from "@material-ui/core";
+import { withRouter } from "react-router";
 
-export default function Chart(props) {
+function Chart(props) {
   const { chartContent } = props;
 
   // format date
@@ -41,6 +57,9 @@ export default function Chart(props) {
       minimumFractionDigits: 0
     });
   }
+
+  // Full URL
+  const url = `https://www.lightningboost.info/${props.history.location.search}`;
 
   return (
     <div
@@ -102,6 +121,40 @@ export default function Chart(props) {
       <div className="section">
         <Papers investments={chartContent.content} />
       </div>
+      <div>
+        <Typography align="center">Share this simulation</Typography>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <FacebookShareButton
+            url={url}
+            quote={`See how bitcoin compares against $${chartContent.content.symbol}`}
+          >
+            <FacebookIcon size={24} round={true} />
+          </FacebookShareButton>
+          <LinkedinShareButton url={url}>
+            <LinkedinIcon size={24} round={true} />
+          </LinkedinShareButton>
+          <TwitterShareButton
+            url={url}
+            title={`See how bitcoin compares against $${chartContent.content.symbol}`}
+          >
+            <TwitterIcon size={24} round={true} />
+          </TwitterShareButton>
+          <WhatsappShareButton
+            url={url}
+            title={`See how bitcoin compares against $${chartContent.content.symbol}`}
+          >
+            <WhatsappIcon size={24} round={true} />
+          </WhatsappShareButton>
+          <RedditShareButton
+            url={url}
+            title={`See how bitcoin compares against $${chartContent.content.symbol}`}
+          >
+            <RedditIcon size={24} round={true} />
+          </RedditShareButton>
+        </div>
+      </div>
     </div>
   );
 }
+
+export default withRouter(Chart);

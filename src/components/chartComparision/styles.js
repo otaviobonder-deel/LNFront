@@ -8,6 +8,13 @@ export const StyledChartComparision = styled.div`
     align-items: flex-end;
     display: flex;
   }
+
+  .SocialMediaShareButton {
+    margin-left: 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const StyledPapers = styled.div`

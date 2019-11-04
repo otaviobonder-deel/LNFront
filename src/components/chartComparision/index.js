@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledChartComparision } from "./styles";
 import {
   Button,
@@ -21,8 +21,9 @@ import * as moment from "moment";
 import Chart from "./chart";
 import LoadingModal from "./loadingModal";
 import debounce from "debounce-promise";
+import { useLocation, withRouter } from "react-router-dom";
 
-export default function ChartComparision(props) {
+function ChartComparision(props) {
   // select stock styles
   const classes = useStyles();
   const theme = useTheme();
@@ -51,6 +52,28 @@ export default function ChartComparision(props) {
     date: moment().subtract(1, "y"),
     investment: ""
   });
+
+  // check if there are query strings
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
+  let qs = useQuery();
+  let queries = {};
+  useEffect(() => {
+    if (qs.has("periodicity")) {
+      queries.periodicity = qs.get("periodicity");
+    }
+    if (qs.has("start_date")) {
+      queries.date = moment(qs.get("start_date"));
+    }
+    if (qs.has("symbol")) {
+      queries.stock = { value: qs.get("symbol"), label: qs.get("symbol") };
+    }
+    if (qs.has("investment")) {
+      queries.investment = qs.get("investment");
+    }
+    setQuery({ ...query, ...queries });
+  }, []);
 
   // function to query stock
   function getAsyncOptions(inputValue) {
@@ -92,6 +115,13 @@ export default function ChartComparision(props) {
 
   // function to get simulation from API
   function simulate() {
+    props.history.push(
+      `/?periodicity=${query.periodicity}&start_date=${moment(
+        query.date
+      ).format("YYYY-MM-DD")}&symbol=${query.stock.value}&investment=${
+        query.investment
+      }`
+    );
     setChart({ ...chart, loading: true });
 
     function formatDate(date) {
@@ -234,3 +264,5 @@ export default function ChartComparision(props) {
     </StyledChartComparision>
   );
 }
+
+export default withRouter(ChartComparision);
