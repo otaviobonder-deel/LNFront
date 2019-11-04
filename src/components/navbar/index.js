@@ -43,6 +43,14 @@ export default function Navbar(props) {
               >
                 Donate
               </Button>
+              <Button
+                style={{ marginLeft: 20 }}
+                variant="outlined"
+                color="secondary"
+                href="https://twitter.com/messages/compose?recipient_id=214867640&ref_src=twsrc%5Etfw"
+              >
+                Contact
+              </Button>
             </div>
           </div>
         </Container>

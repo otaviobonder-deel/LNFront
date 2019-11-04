@@ -1,5 +1,11 @@
 import React from "react";
-import { Divider, List, ListItemText, Typography } from "@material-ui/core";
+import {
+  Divider,
+  Link as MUILink,
+  List,
+  ListItemText,
+  Typography
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { StyledDrawer } from "./styles";
 import useOpenDonateDialog from "../../hooks/useOpenDonateDialog";
@@ -58,6 +64,16 @@ export default function Drawer(props) {
           </ListItemText>
           <ListItemText onClick={openDonate}>
             <Typography color="secondary">Donate</Typography>
+          </ListItemText>
+          <ListItemText onClick={toggleDrawer(false)}>
+            <Typography color="secondary">
+              <MUILink
+                color="inherit"
+                href="https://twitter.com/messages/compose?recipient_id=214867640&ref_src=twsrc%5Etfw"
+              >
+                Contact
+              </MUILink>
+            </Typography>
           </ListItemText>
         </List>
       </div>
