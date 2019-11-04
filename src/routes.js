@@ -9,6 +9,8 @@ import Drawer from "./components/drawer";
 import ReactGA from "react-ga";
 import { createBrowserHistory } from "history";
 import Donate from "./components/donate";
+import { Link, Typography } from "@material-ui/core";
+import useOpenDonateDialog from "./hooks/useOpenDonateDialog";
 
 const history = createBrowserHistory();
 
@@ -26,6 +28,10 @@ const Routes = () => {
   // state to manage drawer
   const [drawer, setDrawer] = useState(false);
 
+  // function to open donation
+  const openDonationDialogContext = useOpenDonateDialog();
+  const openDonationDialog = () => openDonationDialogContext.openDialog();
+
   return (
     <Fragment>
       <Router history={history}>
@@ -38,11 +44,20 @@ const Routes = () => {
         >
           <Navbar setDrawer={setDrawer} />
           <Drawer drawer={drawer} setDrawer={setDrawer} />
-          <Switch>
-            <Route exact path="/" component={Comparision} />
-            <Route exact path="/watchtower" component={Watchtower} />
-            <Route exact path="/channels" component={Channels} />
-          </Switch>
+          <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+            <Switch>
+              <Route exact path="/" component={Comparision} />
+              <Route exact path="/watchtower" component={Watchtower} />
+              <Route exact path="/channels" component={Channels} />
+            </Switch>
+            <div className="section">
+              <Typography align="center">
+                <Link onClick={openDonationDialog} component="button">
+                  Please, consider making a donation 🤓
+                </Link>
+              </Typography>
+            </div>
+          </div>
           <Donate />
         </div>
       </Router>
