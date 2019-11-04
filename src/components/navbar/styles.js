@@ -5,7 +5,7 @@ export const StyledNavbar = styled.div`
   align-items: center;
   background-color: ${theme.palette.primary.light};
   display: flex;
-  height: 40px;
+  height: 50px;
 
   .header {
     align-items: center;

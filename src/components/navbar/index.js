@@ -1,11 +1,15 @@
 import React from "react";
 import { StyledNavbar } from "./styles";
-import { Container, Typography } from "@material-ui/core";
+import { Button, Container, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
+import useOpenDonateDialog from "../../hooks/useOpenDonateDialog";
 
 export default function Navbar(props) {
   const { setDrawer } = props;
+
+  const dialogContext = useOpenDonateDialog();
+  const openDialog = () => dialogContext.openDialog();
 
   return (
     <StyledNavbar>
@@ -31,6 +35,14 @@ export default function Navbar(props) {
               <Link to="/watchtower">
                 <Typography color="secondary">WatchTower</Typography>
               </Link>
+              <Button
+                style={{ marginLeft: 20 }}
+                variant="outlined"
+                color="secondary"
+                onClick={openDialog}
+              >
+                Donate
+              </Button>
             </div>
           </div>
         </Container>

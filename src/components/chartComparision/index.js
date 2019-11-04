@@ -197,6 +197,7 @@ export default function ChartComparision(props) {
               id="investment"
               name="investment"
               label="Investment"
+              type="number"
               value={query.investment.toLocaleString("en-US")}
               onChange={handleChange}
               fullWidth

@@ -14,6 +14,14 @@ const GlobalStyle = createGlobalStyle`
     margin-bottom: 5%;
   }
   
+  .spacing-bottom {
+    margin-bottom: 20px;
+  }
+  
+  .spacing-top {
+    margin-top: 20px;
+  }
+  
   .spinner {
     align-items: center;
     display: flex;

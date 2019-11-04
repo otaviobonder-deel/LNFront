@@ -2,6 +2,7 @@ import React from "react";
 import { Divider, List, ListItemText, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { StyledDrawer } from "./styles";
+import useOpenDonateDialog from "../../hooks/useOpenDonateDialog";
 
 export default function Drawer(props) {
   const { drawer, setDrawer } = props;
@@ -16,6 +17,13 @@ export default function Drawer(props) {
     }
     setDrawer(open);
   };
+
+  // dialog donate
+  const openDonateDialogContext = useOpenDonateDialog();
+  function openDonate() {
+    setDrawer(false);
+    openDonateDialogContext.openDialog();
+  }
 
   return (
     <StyledDrawer open={drawer} onClose={toggleDrawer(false)}>
@@ -47,6 +55,9 @@ export default function Drawer(props) {
             <Link to="/watchtower">
               <Typography color="secondary">WatchTower</Typography>
             </Link>
+          </ListItemText>
+          <ListItemText onClick={openDonate}>
+            <Typography color="secondary">Donate</Typography>
           </ListItemText>
         </List>
       </div>

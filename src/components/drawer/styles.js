@@ -4,7 +4,6 @@ import { Drawer } from "@material-ui/core";
 export const StyledDrawer = styled(Drawer)`
   .links {
     a {
-      padding-left: 20px;
       text-decoration: none;
     }
   }
