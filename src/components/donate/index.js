@@ -4,11 +4,13 @@ import { StyledDonation } from "./styles";
 import {
   Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   Typography
 } from "@material-ui/core";
 import Lightning from "./lightning";
+import OnChain from "./onchain";
 
 export default function Donate() {
   const openDialogContext = useOpenDonateDialog();
@@ -70,8 +72,13 @@ export default function Donate() {
             </Fragment>
           )}
           {donationType === "lightning" && <Lightning />}
-          {donationType === "on-chain" && <div></div>}
+          {donationType === "on-chain" && <OnChain />}
         </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
       </Dialog>
     </StyledDonation>
   );
