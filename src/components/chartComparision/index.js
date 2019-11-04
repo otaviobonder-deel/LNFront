@@ -22,6 +22,7 @@ import Chart from "./chart";
 import LoadingModal from "./loadingModal";
 import debounce from "debounce-promise";
 import { useLocation, withRouter } from "react-router-dom";
+import { scroller } from "react-scroll";
 
 function ChartComparision(props) {
   // select stock styles
@@ -144,19 +145,24 @@ function ChartComparision(props) {
           symbol: query.stock.value
         }
       })
-      .then(response =>
+      .then(response => {
         setChart({
           loading: false,
           error: false,
           received: true,
           content: response.data
-        })
-      )
+        });
+        scroller.scrollTo("chart", {
+          duration: 500,
+          smooth: "easeInOutQuad",
+          offset: -10
+        });
+      })
       .catch(() => setChart({ ...chart, error: true, loading: false }));
   }
 
   return (
-    <StyledChartComparision>
+    <StyledChartComparision name="chart">
       <div className="section">
         <Grid container spacing={2}>
           <Grid item xs={12} md={2} className="input-grid">
