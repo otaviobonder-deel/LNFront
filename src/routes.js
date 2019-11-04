@@ -53,7 +53,10 @@ const Routes = () => {
             <div className="section">
               <Typography align="center">
                 <Link onClick={openDonationDialog} component="button">
-                  Please, consider making a donation 🤓
+                  Please, consider making a donation{" "}
+                  <span role="img" aria-label="Thank you">
+                    🤓
+                  </span>
                 </Link>
               </Typography>
             </div>
