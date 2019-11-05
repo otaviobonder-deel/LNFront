@@ -67,6 +67,7 @@ export default function Lightning(props) {
               name="amount"
               label="Amount"
               type="number"
+              min="1"
               value={values.amount.toLocaleString("en-US")}
               onChange={handleChange}
               fullWidth
