@@ -47,34 +47,54 @@ function ChartComparision(props) {
   });
 
   // state for query
-  const [query, setQuery] = useState({
+  const initialState = {
     periodicity: "",
     stock: "",
     date: moment().subtract(1, "y"),
     investment: ""
-  });
+  };
 
   // check if there are query strings
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
   let qs = useQuery();
-  let queries = {};
+  let queries = {
+    periodicity: "",
+    stock: "",
+    date: "",
+    investment: ""
+  };
+
+  if (qs.has("periodicity")) {
+    queries.periodicity = qs.get("periodicity");
+  }
+
+  if (qs.has("start_date")) {
+    queries.date = qs.get("start_date");
+  }
+  if (qs.has("symbol")) {
+    queries.stock = { value: qs.get("symbol"), label: qs.get("symbol") };
+  }
+  if (qs.has("investment")) {
+    queries.investment = qs.get("investment");
+  }
+
+  const [query, setQuery] = useState(
+    receivedQueryString(queries) ? queries : initialState
+  );
+
   useEffect(() => {
-    if (qs.has("periodicity")) {
-      queries.periodicity = qs.get("periodicity");
+    if (receivedQueryString(query)) {
+      simulate();
     }
-    if (qs.has("start_date")) {
-      queries.date = moment(qs.get("start_date"));
-    }
-    if (qs.has("symbol")) {
-      queries.stock = { value: qs.get("symbol"), label: qs.get("symbol") };
-    }
-    if (qs.has("investment")) {
-      queries.investment = qs.get("investment");
-    }
-    setQuery({ ...query, ...queries });
   }, []);
+
+  function receivedQueryString(query) {
+    return (
+      query.periodicity !== "" && query.stock !== "" && query.investment !== ""
+    );
+  }
 
   // function to query stock
   function getAsyncOptions(inputValue) {
