@@ -11,7 +11,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .section {
-    margin-bottom: 5%;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
   
   .spacing-bottom {
