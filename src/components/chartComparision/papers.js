@@ -85,7 +85,7 @@ export default function Papers(props) {
                 .investment_total_stock
             }
             invested={investments.invested}
-            type="stocks"
+            type="shares"
           />
         </Grid>
       </Grid>
