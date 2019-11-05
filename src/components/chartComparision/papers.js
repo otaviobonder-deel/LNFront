@@ -45,6 +45,14 @@ export default function Papers(props) {
               })}
               %
             </Typography>
+            <Typography component="p">
+              And you would have invested{" "}
+              {invested.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+                currencyDisplay: "symbol"
+              })}
+            </Typography>
           </Grid>
         </Grid>
       </Paper>

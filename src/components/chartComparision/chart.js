@@ -93,7 +93,7 @@ function Chart(props) {
             <Tooltip formatter={formatTooltip} labelFormatter={formatDate} />
             <Legend />
             <Area
-              name="Total invested in BTC"
+              name="Total amount in BTC"
               type="monotone"
               dataKey="investment_total_btc"
               stroke="#ff9500"
@@ -101,7 +101,7 @@ function Chart(props) {
               fill="url(#colorBtc)"
             />
             <Area
-              name={`Total invested in ${chartContent.content.symbol}`}
+              name={`Total amount in ${chartContent.content.symbol}`}
               type="monotone"
               dataKey="investment_total_stock"
               stroke="#00a1e4"
