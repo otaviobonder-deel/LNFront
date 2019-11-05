@@ -175,7 +175,7 @@ function ChartComparision(props) {
         scroller.scrollTo("chart", {
           duration: 500,
           smooth: "easeInOutQuad",
-          offset: -10
+          offset: 10
         });
       })
       .catch(() => setChart({ ...chart, error: true, loading: false }));

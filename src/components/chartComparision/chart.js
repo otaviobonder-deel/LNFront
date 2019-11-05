@@ -20,9 +20,7 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
   RedditShareButton,
-  RedditIcon,
-  EmailShareButton,
-  EmailIcon
+  RedditIcon
 } from "react-share";
 
 import * as moment from "moment";
