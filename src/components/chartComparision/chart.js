@@ -29,7 +29,7 @@ import { Typography } from "@material-ui/core";
 import { withRouter } from "react-router";
 
 function Chart(props) {
-  const { chartContent } = props;
+  const { chartContent, t } = props;
 
   // format date
   function formatDate(tickItem) {
@@ -91,7 +91,7 @@ function Chart(props) {
             <Tooltip formatter={formatTooltip} labelFormatter={formatDate} />
             <Legend />
             <Area
-              name="Total amount in BTC"
+              name={t("Total amount in BTC")}
               type="monotone"
               dataKey="investment_total_btc"
               stroke="#ff9500"
@@ -99,7 +99,7 @@ function Chart(props) {
               fill="url(#colorBtc)"
             />
             <Area
-              name={`Total amount in ${chartContent.content.symbol}`}
+              name={`${t("Total amount in")} ${chartContent.content.symbol}`}
               type="monotone"
               dataKey="investment_total_stock"
               stroke="#00a1e4"
@@ -107,7 +107,7 @@ function Chart(props) {
               fill="url(#colorStock)"
             />
             <Line
-              name="Total invested in $"
+              name={t("Total invested in $")}
               dataKey="invested"
               type="monotone"
               stroke="#ff0000"
@@ -117,14 +117,16 @@ function Chart(props) {
         </ResponsiveContainer>
       </div>
       <div className="section">
-        <Papers investments={chartContent.content} />
+        <Papers investments={chartContent.content} t={t} />
       </div>
       <div>
-        <Typography align="center">Share this simulation</Typography>
+        <Typography align="center">{t("Share this simulation")}</Typography>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <FacebookShareButton
             url={url}
-            quote={`See how bitcoin compares against $${chartContent.content.symbol}`}
+            quote={`${t("See how bitcoin compares against")} $${
+              chartContent.content.symbol
+            }`}
           >
             <FacebookIcon size={24} round={true} />
           </FacebookShareButton>
@@ -133,19 +135,25 @@ function Chart(props) {
           </LinkedinShareButton>
           <TwitterShareButton
             url={url}
-            title={`See how bitcoin compares against $${chartContent.content.symbol}`}
+            title={`${t("See how bitcoin compares against")} $${
+              chartContent.content.symbol
+            }`}
           >
             <TwitterIcon size={24} round={true} />
           </TwitterShareButton>
           <WhatsappShareButton
             url={url}
-            title={`See how bitcoin compares against $${chartContent.content.symbol}`}
+            title={`${t("See how bitcoin compares against")} $${
+              chartContent.content.symbol
+            }`}
           >
             <WhatsappIcon size={24} round={true} />
           </WhatsappShareButton>
           <RedditShareButton
             url={url}
-            title={`See how bitcoin compares against $${chartContent.content.symbol}`}
+            title={`${t("See how bitcoin compares against")} $${
+              chartContent.content.symbol
+            }`}
           >
             <RedditIcon size={24} round={true} />
           </RedditShareButton>

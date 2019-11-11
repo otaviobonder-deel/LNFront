@@ -11,6 +11,7 @@ import { createBrowserHistory } from "history";
 import Donate from "./components/donate";
 import { Link, Typography } from "@material-ui/core";
 import useOpenDonateDialog from "./hooks/useOpenDonateDialog";
+import Liquidity from "./pages/liquidity";
 
 const history = createBrowserHistory();
 
@@ -49,6 +50,7 @@ const Routes = () => {
               <Route exact path="/" component={Comparision} />
               <Route exact path="/watchtower" component={Watchtower} />
               <Route exact path="/channels" component={Channels} />
+              <Route exact path="/liquidity" component={Liquidity} />
             </Switch>
             <div className="section">
               <Typography align="center">
