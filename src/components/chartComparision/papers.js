@@ -3,7 +3,7 @@ import { StyledPapers } from "./styles";
 import { Grid, Paper, Typography } from "@material-ui/core";
 
 export default function Papers(props) {
-  const { investments } = props;
+  const { investments, t } = props;
 
   function CreatePapers(props) {
     const { accumulation, icon, invested, investment, value, type } = props;
@@ -22,7 +22,7 @@ export default function Papers(props) {
           <Grid item>
             <Typography variant="h6">{investment}</Typography>
             <Typography component="p">
-              You would have accumulated{" "}
+              {t("You would have accumulated")}{" "}
               {parseFloat(accumulation).toLocaleString("en-US", {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 4
@@ -30,7 +30,7 @@ export default function Papers(props) {
               {type}
             </Typography>
             <Typography component="p">
-              This would value{" "}
+              {t("This would value")}{" "}
               {value.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
@@ -38,7 +38,8 @@ export default function Papers(props) {
               })}
             </Typography>
             <Typography component="p">
-              Your {profit > 0 ? "profit" : "deficit"} would be{" "}
+              {t("Your")} {profit > 0 ? t("profit") : t("deficit")}{" "}
+              {t("would be")}{" "}
               {profit.toLocaleString("en-US", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 0
@@ -46,7 +47,7 @@ export default function Papers(props) {
               %
             </Typography>
             <Typography component="p">
-              And you would have invested{" "}
+              {t("And you would have invested")}{" "}
               {invested.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
@@ -64,7 +65,7 @@ export default function Papers(props) {
       <Grid container spacing={2} justify="space-between">
         <Grid item>
           <CreatePapers
-            investment={"Investing in Bitcoin"}
+            investment={t("Investing in Bitcoin")}
             accumulation={investments.btcTotal}
             icon="bitcoin"
             value={
@@ -77,7 +78,7 @@ export default function Papers(props) {
         </Grid>
         <Grid item>
           <CreatePapers
-            investment={`Investing in ${investments.symbol}`}
+            investment={`${t("Investing in")} ${investments.symbol}`}
             accumulation={investments.stockTotal}
             icon="stocks"
             value={
@@ -85,7 +86,7 @@ export default function Papers(props) {
                 .investment_total_stock
             }
             invested={investments.invested}
-            type="shares"
+            type={t("shares")}
           />
         </Grid>
       </Grid>
