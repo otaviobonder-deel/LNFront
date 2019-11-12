@@ -9,31 +9,31 @@ import { GridLoader } from "react-spinners";
 require("dotenv").config();
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <StoreProvider>
-        <CssBaseline />
-        <GlobalStyle />
-        <Suspense
-          fallback={
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flex: 1,
-                minHeight: "100vh"
-              }}
-            >
-              <GridLoader color="#3e2e56" />
-            </div>
-          }
-        >
-          <Routes />
-        </Suspense>
-      </StoreProvider>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <StoreProvider>
+                <CssBaseline />
+                <GlobalStyle />
+                <Suspense
+                    fallback={
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                flex: 1,
+                                minHeight: "100vh"
+                            }}
+                        >
+                            <GridLoader color="#3e2e56" />
+                        </div>
+                    }
+                >
+                    <Routes />
+                </Suspense>
+            </StoreProvider>
+        </ThemeProvider>
+    );
 }
 
 export default App;

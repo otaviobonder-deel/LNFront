@@ -17,57 +17,78 @@ const history = createBrowserHistory();
 
 // Initialize google analytics page view tracking
 history.listen(location => {
-  ReactGA.set({ page: location.pathname }); // Update the user's current page
-  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+    ReactGA.set({ page: location.pathname }); // Update the user's current page
+    ReactGA.pageview(location.pathname); // Record a pageview for the given page
 });
 
 const Routes = () => {
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
-  }, []);
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname);
+    }, []);
 
-  // state to manage drawer
-  const [drawer, setDrawer] = useState(false);
+    // state to manage drawer
+    const [drawer, setDrawer] = useState(false);
 
-  // function to open donation
-  const openDonationDialogContext = useOpenDonateDialog();
-  const openDonationDialog = () => openDonationDialogContext.openDialog();
+    // function to open donation
+    const openDonationDialogContext = useOpenDonateDialog();
+    const openDonationDialog = () => openDonationDialogContext.openDialog();
 
-  return (
-    <Fragment>
-      <Router history={history}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh"
-          }}
-        >
-          <Navbar setDrawer={setDrawer} />
-          <Drawer drawer={drawer} setDrawer={setDrawer} />
-          <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-            <Switch>
-              <Route exact path="/" component={Comparision} />
-              <Route exact path="/watchtower" component={Watchtower} />
-              <Route exact path="/channels" component={Channels} />
-              <Route exact path="/liquidity" component={Liquidity} />
-            </Switch>
-            <div className="section">
-              <Typography align="center">
-                <Link onClick={openDonationDialog} component="button">
-                  Please, consider making a donation{" "}
-                  <span role="img" aria-label="Thank you">
-                    🤓
-                  </span>
-                </Link>
-              </Typography>
-            </div>
-          </div>
-          <Donate />
-        </div>
-      </Router>
-    </Fragment>
-  );
+    return (
+        <Fragment>
+            <Router history={history}>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        minHeight: "100vh"
+                    }}
+                >
+                    <Navbar setDrawer={setDrawer} />
+                    <Drawer drawer={drawer} setDrawer={setDrawer} />
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            flex: 1
+                        }}
+                    >
+                        <Switch>
+                            <Route exact path="/" component={Comparision} />
+                            <Route
+                                exact
+                                path="/watchtower"
+                                component={Watchtower}
+                            />
+                            <Route
+                                exact
+                                path="/channels"
+                                component={Channels}
+                            />
+                            <Route
+                                exact
+                                path="/liquidity"
+                                component={Liquidity}
+                            />
+                        </Switch>
+                        <div className="section">
+                            <Typography align="center">
+                                <Link
+                                    onClick={openDonationDialog}
+                                    component="button"
+                                >
+                                    Please, consider making a donation{" "}
+                                    <span role="img" aria-label="Thank you">
+                                        🤓
+                                    </span>
+                                </Link>
+                            </Typography>
+                        </div>
+                    </div>
+                    <Donate />
+                </div>
+            </Router>
+        </Fragment>
+    );
 };
 
 export default Routes;

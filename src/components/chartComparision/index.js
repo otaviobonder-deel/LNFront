@@ -10,6 +10,7 @@ import {
     NoSsr,
     Select,
     TextField,
+    Typography,
     useTheme
 } from "@material-ui/core";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -171,17 +172,26 @@ function ChartComparision(props) {
             }
         })
             .then(response => {
-                setChart({
-                    loading: false,
-                    error: false,
-                    received: true,
-                    content: response.data
-                });
-                scroller.scrollTo("chart", {
-                    duration: 500,
-                    smooth: "easeInOutQuad",
-                    offset: 10
-                });
+                if (response.data.btcTotal == Infinity) {
+                    setChart({
+                        loading: false,
+                        error: true,
+                        received: true,
+                        content: []
+                    });
+                } else {
+                    setChart({
+                        loading: false,
+                        error: false,
+                        received: true,
+                        content: response.data
+                    });
+                    scroller.scrollTo("chart", {
+                        duration: 500,
+                        smooth: "easeInOutQuad",
+                        offset: 10
+                    });
+                }
             })
             .catch(() => setChart({ ...chart, error: true, loading: false }));
     }
@@ -302,10 +312,17 @@ function ChartComparision(props) {
             </div>
             <div className="section">
                 {chart.received &&
-                    (chart.content !== {} ? (
+                    (!chart.error ? (
                         <Chart chartContent={chart} t={t} />
                     ) : (
-                        t("Error")
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center"
+                            }}
+                        >
+                            <Typography align="center">{t("Error")}</Typography>
+                        </div>
                     ))}
             </div>
             <LoadingModal open={chart.loading} t={t} />
