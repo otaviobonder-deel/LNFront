@@ -10,7 +10,6 @@ import {
     NoSsr,
     Select,
     TextField,
-    Typography,
     useTheme
 } from "@material-ui/core";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -25,6 +24,7 @@ import debounce from "debounce-promise";
 import { useLocation, withRouter } from "react-router-dom";
 import { scroller } from "react-scroll";
 import { useTranslation } from "react-i18next";
+import Error from "./error";
 
 function ChartComparision(props) {
     // translation
@@ -172,26 +172,17 @@ function ChartComparision(props) {
             }
         })
             .then(response => {
-                if (response.data.btcTotal == Infinity) {
-                    setChart({
-                        loading: false,
-                        error: true,
-                        received: true,
-                        content: []
-                    });
-                } else {
-                    setChart({
-                        loading: false,
-                        error: false,
-                        received: true,
-                        content: response.data
-                    });
-                    scroller.scrollTo("chart", {
-                        duration: 500,
-                        smooth: "easeInOutQuad",
-                        offset: 10
-                    });
-                }
+                setChart({
+                    loading: false,
+                    error: false,
+                    received: true,
+                    content: response.data
+                });
+                scroller.scrollTo("chart", {
+                    duration: 500,
+                    smooth: "easeInOutQuad",
+                    offset: 10
+                });
             })
             .catch(() => setChart({ ...chart, error: true, loading: false }));
     }
@@ -315,14 +306,7 @@ function ChartComparision(props) {
                     (!chart.error ? (
                         <Chart chartContent={chart} t={t} />
                     ) : (
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "center"
-                            }}
-                        >
-                            <Typography align="center">{t("Error")}</Typography>
-                        </div>
+                        <Error />
                     ))}
             </div>
             <LoadingModal open={chart.loading} t={t} />

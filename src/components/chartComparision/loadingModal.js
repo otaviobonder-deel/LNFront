@@ -44,14 +44,6 @@ export default function LoadingModal(props) {
                         }}
                     >
                         <GridLoader color="#3e2e56" />
-                        <Typography align="center" style={{ color: "white" }}>
-                            {t(
-                                "Some simulations may take a long time to finish. I'm improving the code to use a local database instead of a free API"
-                            )}{" "}
-                            <span role="img" aria-label="smile">
-                                😄
-                            </span>
-                        </Typography>
                     </div>
                 </Fade>
             </Modal>
