@@ -225,7 +225,7 @@ function ChartComparision(props) {
                                 animateYearScrolling
                                 disableFuture
                                 format="MM/dd/yyyy"
-                                minDate={new Date("2014-04-15")}
+                                minDate={new Date("2011-09-13")}
                                 openTo="year"
                                 maxDate={moment().subtract(1, "days")}
                             />
