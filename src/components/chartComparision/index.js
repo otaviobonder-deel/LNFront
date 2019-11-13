@@ -76,7 +76,7 @@ function ChartComparision(props) {
     }
 
     if (qs.has("start_date")) {
-        queries.date = qs.get("start_date");
+        queries.date = moment(qs.get("start_date"));
     }
     if (qs.has("symbol")) {
         queries.stock = { value: qs.get("symbol"), label: qs.get("symbol") };
