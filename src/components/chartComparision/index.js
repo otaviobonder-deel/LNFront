@@ -12,8 +12,11 @@ import {
     TextField,
     useTheme
 } from "@material-ui/core";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import {
+    KeyboardDatePicker,
+    MuiPickersUtilsProvider
+} from "@material-ui/pickers";
+import MomentUtils from "@date-io/moment";
 import AsyncSelect from "react-select/async";
 import api from "../../services/api";
 import { components, useStyles } from "./selectComponents";
@@ -53,7 +56,7 @@ function ChartComparision(props) {
 
     // state for query
     const initialState = {
-        periodicity: "",
+        periodicity: "monthly",
         stock: "",
         date: moment().subtract(1, "y"),
         investment: ""
@@ -216,18 +219,19 @@ function ChartComparision(props) {
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} md={2} className="input-grid">
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <DatePicker
+                        <MuiPickersUtilsProvider utils={MomentUtils}>
+                            <KeyboardDatePicker
                                 fullWidth
                                 label={t("Starting date")}
                                 value={query.date}
                                 onChange={handleDateChange}
                                 animateYearScrolling
                                 disableFuture
-                                format="MM/dd/yyyy"
+                                format="MM/DD/YYYY"
                                 minDate={new Date("2011-09-13")}
                                 openTo="year"
                                 maxDate={moment().subtract(1, "days")}
+                                placeholder="MM/DD/YYYY"
                             />
                         </MuiPickersUtilsProvider>
                     </Grid>
