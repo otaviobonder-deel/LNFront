@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { Typography } from "@material-ui/core";
 
 export default function Error(props) {
+    const { t } = props;
+
     return (
         <Fragment>
             <div
@@ -30,8 +32,9 @@ export default function Error(props) {
             </div>
             <div className="section">
                 <Typography align="center">
-                    There are too many requests right now. Wait a bit and try
-                    again
+                    {t(
+                        "There are too many requests right now. Wait a bit and try again"
+                    )}
                 </Typography>
             </div>
         </Fragment>

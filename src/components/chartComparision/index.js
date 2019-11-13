@@ -306,7 +306,7 @@ function ChartComparision(props) {
                     (!chart.error ? (
                         <Chart chartContent={chart} t={t} />
                     ) : (
-                        <Error />
+                        <Error t={t} />
                     ))}
             </div>
             <LoadingModal open={chart.loading} t={t} />
