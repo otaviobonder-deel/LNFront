@@ -10,6 +10,7 @@ import {
     NoSsr,
     Select,
     TextField,
+    Tooltip,
     useTheme
 } from "@material-ui/core";
 import {
@@ -265,22 +266,24 @@ function ChartComparision(props) {
                         </div>
                     </Grid>
                     <Grid item xs={12} md={2} className="input-grid">
-                        <TextField
-                            id="investment"
-                            name="investment"
-                            label={t("Investment")}
-                            type="number"
-                            value={query.investment.toLocaleString("en-US")}
-                            onChange={handleChange}
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        $
-                                    </InputAdornment>
-                                )
-                            }}
-                        />
+                        <Tooltip title={t("In US Dollars")}>
+                            <TextField
+                                id="investment"
+                                name="investment"
+                                label={t("Investment")}
+                                type="number"
+                                value={query.investment.toLocaleString("en-US")}
+                                onChange={handleChange}
+                                fullWidth
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            $
+                                        </InputAdornment>
+                                    )
+                                }}
+                            />
+                        </Tooltip>
                     </Grid>
                     <Grid item xs={12} md={2} className="input-grid">
                         {Object.values(query).indexOf("") > -1 ? (

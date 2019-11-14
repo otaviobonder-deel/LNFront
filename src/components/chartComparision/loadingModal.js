@@ -4,7 +4,6 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { GridLoader } from "react-spinners";
-import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
     modal: {
@@ -16,7 +15,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function LoadingModal(props) {
-    const { open, t } = props;
+    const { open } = props;
 
     const classes = useStyles();
 
